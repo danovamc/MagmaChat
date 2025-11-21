@@ -1,0 +1,52 @@
+name: MagmaChat
+version: '1.0.0'
+main: dev.lujanabril.magmaChat.Main
+api-version: '1.21'
+
+commands:
+  mutechat:
+  commandspy:
+    description: Toggle command spy
+    usage: /commandspy
+    aliases: [cspy]
+    permission: magmachat.commandspy
+  ping:
+    description: Check player latency
+    aliases: [latencia, latency]
+  msg:
+    description: Send a private message to a player
+    aliases: [tell, w, whisper]
+  reply:
+    description: Reply to the last private message
+    aliases: [r]
+  broadcast:
+    description: Broadcast a message to all players
+    aliases: [bc]
+    permission: magmachat.broadcast
+  slur:
+    description: Manage the slur filter
+    permission: magmachat.slurs.manage
+  ignore:
+    description: Ignore private messages from specific players
+    aliases: [ block ]
+    usage: /ignore <add|remove|list> <player>
+  msgtoggle:
+    description: Toggle receiving private messages
+    usage: /msgtoggle
+  magmachat:
+    description: Reload plugin configuration
+    permission: magmachat.slurs.manage
+  togglechat:
+permissions:
+  magmachat.broadcast:
+    description: Allows broadcasting messages
+    default: op
+  magmachat.colors:
+    description: Allows managing the slur filter
+    default: op
+  magmachat.slurs.manage:
+    description: Allows managing the slur filter
+    default: op
+  magmachat.itemplaceholder:
+    description: Allows using item placeholders in chat
+    default: true

@@ -1,0 +1,15 @@
+dev\lujanabril\magmaChat\Managers\PlayerDataManager.class
+dev\lujanabril\magmaChat\Listeners\JoinListener.class
+dev\lujanabril\magmaChat\Commands\PingCommand.class
+dev\lujanabril\magmaChat\Managers\ChatManager.class
+dev\lujanabril\magmaChat\Renderer\MagmaChatRenderer.class
+dev\lujanabril\magmaChat\Main.class
+dev\lujanabril\magmaChat\Commands\MessageCommands.class
+dev\lujanabril\magmaChat\Listeners\CommandListener.class
+dev\lujanabril\magmaChat\Managers\CommandSpyManager.class
+dev\lujanabril\magmaChat\Commands\MagmaChatCommand.class
+dev\lujanabril\magmaChat\Commands\CommandSpyCommand.class
+dev\lujanabril\magmaChat\Managers\GGWaveManager.class
+dev\lujanabril\magmaChat\Managers\GGWaveManager$1.class
+dev\lujanabril\magmaChat\Listeners\AsyncChatListener.class
+dev\lujanabril\magmaChat\Managers\HEXColor.class

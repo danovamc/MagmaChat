@@ -1,0 +1,134 @@
+# MagmaChat Configuration
+
+# Chat format settings
+chat-format: '{suffix}{prefix}%essentials_nickname% %eternaltags_tag%&8&l⮕ &r{message}'
+
+# Group-specific formats
+group-formats:
+  default: '{suffix}{prefix}%essentials_nickname% %eternaltags_tag%&8&l⮕ &r{message}'
+
+commandspy:
+  format: '&8[&c&lSPY&8] &7{player}: &c{command}'
+  messages:
+    enabled: '#fb2424&lM#fc311e&lA#fc3e18&lG#fd4c12&lM#fe590c&lA#fe6606&lM#ff7300&lC
+      &8▸ &f¡El sistema de espionaje de comandos ha sido &aactivado&f!'
+    disabled: '#fb2424&lM#fc311e&lA#fc3e18&lG#fd4c12&lM#fe590c&lA#fe6606&lM#ff7300&lC
+      &8▸ &f¡El sistema de espionaje de comandos ha sido &cdesactivado&f!'
+    no-permission: '#fb2424&lM#fc311e&lA#fc3e18&lG#fd4c12&lM#fe590c&lA#fe6606&lM#ff7300&lC
+      &8▸ &c¡No tienes permiso para ejecutar esto!'
+  whitelisted-commands:
+    - /r
+    - /msg
+    - /reply
+    - /clan chat
+    - /pay
+    - /tell
+    - /pv
+
+welcome:
+  enable-welcome-head: false
+  enable-new-player-message: true
+  new-player-message: "<color:#ffea00><b>BIENVENIDA</b> <dark_gray>➡</dark_gray> <white>¡<green>%player%</green> es nuev@ por aquí!</white> <dark_gray>(<color:#ffea00>#%essentials_unique%</color>)</dark_gray>"
+  head-lines:
+    line1: ""
+    line2: "<white>¡Bienvenido de vuelta a <b><gradient:#FB0808:#FB6108>MAGMAMC</gradient></b><reset>!"
+    line3: ""
+    line4: "<#FB6108><b>|</b> <white>Tienda: <#FB6108>tienda.magmamc.us"
+    line5: "<#FB6108><b>|</b> <white>Discord: <#FB6108>discord.magmamc.us"
+    line6: ""
+    line7: ""
+messages:
+  ggwave-already-active:
+    - "<red>Una ola GG ya está activa. Espera a que termine.</red>"
+  ggwave-started:
+    - ""
+    - "<green><b>OLA GG: <u>ACTIVADA</u>"
+    - ""
+    - "<gray>La <white>Ola GG</white> ha comenzado</gray>"
+    - "<gray>Apoya a nuestro reciente comprador!"
+    - ""
+  ggwave-ended:
+    - ""
+    - "<red><b>OLA GG: <u>DESACTIVADA</u>"
+    - ""
+    - "<gray>La <white>Ola GG</white> ha terminado</gray>"
+    - "<gray>Muchas gracias a nuestro reciente comprador!"
+    - ""
+  chat-toggle-enabled: "<color:#c1dade>⚡ <b>PREFERENCIAS</b></color> <dark_gray>➡</dark_gray> ¡Has <green>activado</green> el chat público!"
+  chat-toggle-disabled: "<color:#c1dade>⚡ <b>PREFERENCIAS</b></color> <dark_gray>➡</dark_gray> ¡Has <red>desactivado</red> el chat público!"
+  msg-toggle-enabled: "<color:#c1dade>⚡ <b>PREFERENCIAS</b></color> <dark_gray>➡</dark_gray> ¡Has <green>activado</green> los mensajes privados!"
+  msg-toggle-disabled: "<color:#c1dade>⚡ <b>PREFERENCIAS</b></color> <dark_gray>➡</dark_gray> ¡Has <red>desactivado</red> los mensajes privados!"
+  msg-usage: "<#FFA450>☀ <b>CHAT</b> <dark_gray>➡</dark_gray> <reset>Uso correcto: <yellow>/msg <jugador> <mensaje>"
+  msg-format-outgoing: '<#FFC75A>✉ <b>MSG</b> <dark_gray>➡</dark_gray> <reset>Tú <dark_gray>▸</dark_gray> <reset><player><dark_gray>: <#FFE174><message>'
+  msg-format-incoming: '<#FFC75A>✉ <b>MSG</b> <dark_gray>➡</dark_gray> <reset><player> <dark_gray>▸</dark_gray> <white>Tú<dark_gray>: <#FFE174><message>'
+  no-reply-target: <red><b>ERROR</b> <dark_gray>▸</dark_gray></red> No tienes a nadie a quien responder.
+  player-offline: <red><b>ERROR</b> <dark_gray>▸</dark_gray></red> El jugador está desconectado.
+
+  msg-sound:
+    enabled: true
+    sound: entity.chicken.egg
+    volume: 0.5
+    pitch: 2.0
+  # -----
+  # BROADCAST
+  # -----
+  broadcast-format: <color:#FF3737><b>ALERTA</b></color> <dark_gray><b>⮕</b></dark_gray> <white><message>
+  broadcast-line-prefix: <dark_gray>➥ </dark_gray>
+  broadcast-sound:
+    enabled: true
+    sound: block.note_block.pling
+    volume: 0.5
+    pitch: 1.0
+  # -----
+  # OTRO
+  # ------
+  slur-detected: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &fTu mensaje tiene lenguaje inapropiado'
+  server-ip-detected: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &fNo puedes enviar &eIPs&f en el chat!'
+  chat-spam: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &fEspera &e{cooldown}s&r antes de enviar otro mensaje!'
+  command-spam: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &f¡Espera &e{cooldown}s&r antes de usar otro comando!'
+  ping-self: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &f¡Tu ping actual es &e%ping%ms&f!'
+  ping-other: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &f¡El ping de &e%player%&f es &e%ping%ms&f!'
+  player-not-found: '&#fb2424&lM&#fc311e&lA&#fc3e18&lG&#fd4c12&lM&#fe590c&lA&#fe6606&lM&#ff7300&lC
+    &8▸ &fEl jugador %player% no está en línea'
+
+anti-spam:
+  enabled: true
+  cooldown: 1
+  command-spam-enabled: true
+  command-cooldown: 0.75
+
+# Chat filter settings
+chat-filter:
+  slurs:
+    - estupido
+    - mierda
+    - idiota
+  block-server-ips: true
+  anti-flood:
+    enabled: true
+    max-repeated-chars: 7
+  anti-caps:
+    enabled: true
+    max-caps: 12
+
+# Item placeholder settings
+use-item-placeholder: true
+item-placeholder-permission: magmachat.itemplaceholder
+
+# Plugin messages
+reload-message: <green>¡Configuración recargada exitosamente!
+no-permission: <red>No tienes permiso para usar este comando.
+
+# Permissions messages
+permission-messages:
+  broadcast: <red>No tienes permiso para usar el broadcast.
+  chatcolor: <red>No tienes permiso para usar colores en el chat.
+  slurs-manage: <red>No tienes permiso para gestionar el filtro de palabras.
+
+

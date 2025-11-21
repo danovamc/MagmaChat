@@ -1,0 +1,14 @@
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Commands\CommandSpyCommand.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Commands\MagmaChatCommand.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Commands\MessageCommands.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Commands\PingCommand.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\AsyncChatListener.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\CommandListener.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\JoinListener.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Main.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\ChatManager.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\CommandSpyManager.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\GGWaveManager.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\HEXColor.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\PlayerDataManager.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Renderer\MagmaChatRenderer.java
