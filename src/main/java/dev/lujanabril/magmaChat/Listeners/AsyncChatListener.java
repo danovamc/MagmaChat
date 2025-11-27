@@ -33,43 +33,62 @@ public class AsyncChatListener implements Listener {
         this.magmaChatRenderer = new MagmaChatRenderer(plugin);
     }
 
-    @EventHandler(
-            priority = EventPriority.LOWEST
-    )
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onChat(AsyncChatEvent event) {
         Player player = event.getPlayer();
+
+        // 1. Verificar si el chat está muteado
         if (this.plugin.getMessageCommands().isChatMuted() && !player.hasPermission("magmachat.bypass.mutechat")) {
             String chatMutedMessage = this.plugin.getConfig().getString("messages.chat-is-muted", "<red>El chat está silenciado actualmente.</red>");
             player.sendMessage(MiniMessage.miniMessage().deserialize(chatMutedMessage));
             event.setCancelled(true);
         } else {
+            // Obtener el mensaje en texto plano
             String rawMessage = "";
             if (event.message() instanceof TextComponent) {
                 rawMessage = ((TextComponent)event.message()).content();
             } else {
-                rawMessage = event.message().toString();
+                rawMessage = event.message().toString(); // Fallback simple
             }
 
+            // 2. Verificar malas palabras (Slurs)
             if (this.plugin.getChatManager().containsSlur(rawMessage)) {
                 event.setCancelled(true);
                 String slurMessage = this.plugin.getConfig().getString("messages.slur-detected", "&cYour message contains prohibited words!");
                 player.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(slurMessage));
+
+                // 3. Verificar IPs de servidores
             } else if (this.plugin.getChatManager().containsServerIp(rawMessage) && !player.hasPermission("magmachat.bypass.ipfilter")) {
                 event.setCancelled(true);
                 String ipMessage = this.plugin.getConfig().getString("messages.server-ip-detected", "&cServer IP addresses are not allowed in chat!");
                 player.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(ipMessage));
+
+                // 4. Verificar Spam por tiempo (Cooldown)
             } else if (this.plugin.getChatManager().isSpam(player)) {
                 event.setCancelled(true);
                 double remainingTime = this.plugin.getChatManager().getRemainingChatCooldown(player);
                 String spamMessage = this.plugin.getConfig().getString("messages.chat-spam", "&cPlease wait {cooldown} seconds before sending another message!");
                 spamMessage = spamMessage.replace("{cooldown}", String.valueOf(remainingTime));
                 player.sendMessage(LegacyComponentSerializer.legacyAmpersand().deserialize(spamMessage));
+
+                // 5. NUEVO: Verificar Spam por Similitud (Repetición)
+            } else if (this.plugin.getChatManager().isSimilarSpam(player, rawMessage)) {
+                event.setCancelled(true);
+                // El mensaje de error se obtiene del ChatManager (configurado en config.yml)
+                String similarityMsg = this.plugin.getChatManager().getSimilarityMessage();
+                player.sendMessage(MiniMessage.miniMessage().deserialize(similarityMsg));
+
             } else {
+                // --- Procesamiento del mensaje válido ---
+
                 String processedMessage = this.plugin.getChatManager().processMessage(rawMessage, player);
+
+                // Procesar Ola GG
                 if (this.plugin.getGGWaveManager() != null && this.plugin.getGGWaveManager().isGGWaveActive()) {
                     processedMessage = this.plugin.getGGWaveManager().processGGWave(processedMessage);
                 }
 
+                // Si el mensaje cambió (por filtros o colores), actualizarlo
                 if (!processedMessage.equals(rawMessage)) {
                     Component messageComponent;
                     if (processedMessage.contains("#")) {
@@ -77,12 +96,11 @@ public class AsyncChatListener implements Listener {
                     } else {
                         messageComponent = Component.text(processedMessage);
                     }
-
                     event.message(messageComponent);
                 }
 
-                Set<Audience> filteredViewers = new HashSet();
-
+                // Filtrar visibilidad del chat por jugador
+                Set<Audience> filteredViewers = new HashSet<>();
                 for(Audience viewer : event.viewers()) {
                     if (viewer instanceof Player) {
                         Player viewerPlayer = (Player)viewer;
@@ -96,9 +114,13 @@ public class AsyncChatListener implements Listener {
 
                 event.viewers().clear();
                 event.viewers().addAll(filteredViewers);
+
+                // Procesar placeholder de item [item]
                 if (this.plugin.getConfig().getBoolean("use-item-placeholder", false) && player.hasPermission("magmachat.itemplaceholder")) {
                     ItemStack item = player.getInventory().getItemInMainHand();
                     Component displayName;
+
+                    // Lógica para obtener el nombre del item
                     if (item.getItemMeta() != null && item.getItemMeta().hasDisplayName()) {
                         displayName = item.getItemMeta().displayName();
                     } else {
@@ -106,14 +128,21 @@ public class AsyncChatListener implements Listener {
                             event.renderer(this.magmaChatRenderer);
                             return;
                         }
-
                         Locale playerLocale = player.locale();
                         displayName = this.getLocalizedItemName(item, playerLocale);
                     }
 
+                    // Reemplazar [item] en el chat
                     if (!item.getType().equals(Material.AIR) && displayName != null) {
-                        Component formattedItem = ((TextComponent)((TextComponent)Component.text("[").color(NamedTextColor.DARK_GRAY)).append(displayName.color(TextColor.fromHexString("#FF4848")).hoverEvent(item))).append(Component.text("]").color(NamedTextColor.DARK_GRAY));
-                        event.renderer((source, sourceDisplayName, message1, viewerx) -> this.magmaChatRenderer.render(source, sourceDisplayName, message1, viewerx).replaceText((TextReplacementConfig)TextReplacementConfig.builder().match(Pattern.compile("\\[item]", 2)).replacement(formattedItem).build()));
+                        Component formattedItem = ((TextComponent)((TextComponent)Component.text("[").color(NamedTextColor.DARK_GRAY))
+                                .append(displayName.color(TextColor.fromHexString("#FF4848")).hoverEvent(item)))
+                                .append(Component.text("]").color(NamedTextColor.DARK_GRAY));
+
+                        event.renderer((source, sourceDisplayName, message1, viewerx) ->
+                                this.magmaChatRenderer.render(source, sourceDisplayName, message1, viewerx)
+                                        .replaceText((TextReplacementConfig)TextReplacementConfig.builder()
+                                                .match(Pattern.compile("\\[item]", Pattern.CASE_INSENSITIVE))
+                                                .replacement(formattedItem).build()));
                     } else {
                         event.renderer(this.magmaChatRenderer);
                     }

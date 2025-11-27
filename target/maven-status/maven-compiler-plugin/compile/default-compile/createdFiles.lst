@@ -1,5 +1,6 @@
 dev\lujanabril\magmaChat\Managers\PlayerDataManager.class
 dev\lujanabril\magmaChat\Listeners\JoinListener.class
+dev\lujanabril\magmaChat\Listeners\QuitListener.class
 dev\lujanabril\magmaChat\Commands\PingCommand.class
 dev\lujanabril\magmaChat\Managers\ChatManager.class
 dev\lujanabril\magmaChat\Renderer\MagmaChatRenderer.class

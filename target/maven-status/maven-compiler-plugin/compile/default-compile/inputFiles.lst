@@ -5,6 +5,7 @@ D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Commands\PingCommand.
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\AsyncChatListener.java
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\CommandListener.java
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\JoinListener.java
+D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Listeners\QuitListener.java
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Main.java
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\ChatManager.java
 D:\Plugin\MagmaChat\src\main\java\dev\lujanabril\magmaChat\Managers\CommandSpyManager.java

@@ -42,7 +42,7 @@ permissions:
     description: Allows broadcasting messages
     default: op
   magmachat.colors:
-    description: Allows managing the slur filter
+    description: Allows using colors in chat
     default: op
   magmachat.slurs.manage:
     description: Allows managing the slur filter
@@ -50,3 +50,6 @@ permissions:
   magmachat.itemplaceholder:
     description: Allows using item placeholders in chat
     default: true
+  magmachat.bypass.similarity:
+    description: Permite saltarse el filtro de mensajes repetidos
+    default: op

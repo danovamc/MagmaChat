@@ -7,6 +7,7 @@ import dev.lujanabril.magmaChat.Commands.PingCommand;
 import dev.lujanabril.magmaChat.Listeners.AsyncChatListener;
 import dev.lujanabril.magmaChat.Listeners.CommandListener;
 import dev.lujanabril.magmaChat.Listeners.JoinListener;
+import dev.lujanabril.magmaChat.Listeners.QuitListener;
 import dev.lujanabril.magmaChat.Managers.ChatManager;
 import dev.lujanabril.magmaChat.Managers.CommandSpyManager;
 import dev.lujanabril.magmaChat.Managers.GGWaveManager;
@@ -49,6 +50,7 @@ public final class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new AsyncChatListener(this), this);
         this.getServer().getPluginManager().registerEvents(new CommandListener(this), this);
         this.getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+        this.getServer().getPluginManager().registerEvents(new QuitListener(this), this);
     }
 
     public void onDisable() {
